@@ -58,7 +58,7 @@ public class Bicicleta extends Vehiculo{
         }else{
             tip = "De calle";
         }
-        return super.toString() + "Bicicleta{" + "\ndescripcion=" + descripcion + "\nradio=" + radio + "\nTipo=" + tip+ '}';
+        return super.toString() + "Bicicleta{" + "\ndescripcion=" + descripcion + "\nradio=" + radio + "\nTipo=" + tip+ "}\n";
     }
     
     
