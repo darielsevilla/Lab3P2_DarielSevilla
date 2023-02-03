@@ -228,8 +228,60 @@ public class Lab3P2_DarielSevilla {
                     }
                     break;
                 case 4:
+                    int op4 = 0;
                     
-                     break;
+                    do{
+                        System.out.println("1-Comprar vehiculo");
+                        System.out.println("2-Vender vehiculo");
+                        op4 = lea.nextInt();
+                    }
+                    while(op4 != 1 && op4 != 2); 
+                    
+                    int c = -1;
+                    do{
+                        System.out.println("Clientes:");
+                        int i = 1;
+                        for (Cliente cliente : clientes) {
+                            System.out.println("Cliente " + i);
+                            i++;
+                            System.out.println(cliente);
+                        }
+                        System.out.println("Ingrese cliente:");
+                        c = lea.nextInt() - 1;
+                        
+                        c = lea.nextInt();
+                    }while(c < 0 || c > clientes.size() - 1);
+                    
+                    int b = -1;
+                    do{
+                        System.out.println("Concesionarias:");
+                        int i = 1;
+                        for (Concesionaria con : listaConcesionarias) {
+                            System.out.println("Concesionaria " + con);
+                            i++;
+                            System.out.println(con);
+                        }
+                        System.out.println("Ingrese concesionaria:");
+                        b = lea.nextInt() - 1;
+                        
+                        
+                    }while(c < 0 || c > listaConcesionarias.size() - 1);
+                    Cliente actual = clientes.get(c);
+                    Concesionaria esta = listaConcesionarias.get(b);
+                    
+                    switch(op4){
+                        case 1:
+                            if(esta.getVehiculos().size() == 0){
+                                System.out.println("Esta concesionaria no tiene vehiculos");
+                            }
+                            break;
+                        case 2: 
+                            if(actual.getVehiculos().size() == 0){
+                                System.out.println("Esta persona no tiene vehiculos");
+                            }
+                            break;
+                    }
+                    break;
             }
         } while (op != 4);
 
