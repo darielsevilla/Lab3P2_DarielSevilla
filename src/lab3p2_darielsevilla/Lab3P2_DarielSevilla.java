@@ -429,14 +429,59 @@ public class Lab3P2_DarielSevilla {
                     }while(op < 0 && op > list.size()-1);
                     
                     list.get(op).getVehiculos().add(carro);
+                    
       
                 }
                 case 2:
+                    System.out.println("Ingrese capacidad de pasajeros: ");
+                    int capacidad = lea.nextInt();
+                    Bus bus = new Bus(capacidad, color, marca, modelo, year, precio);
+                    
+                    int op = 0;
+                    do{
+                        System.out.println("A que concesionaria desea agregarlo:");
+                        int i = 1;
+                        for (Concesionaria concesionaria : list) {
+                            System.out.println("Consecionaria " + i);
+                            System.out.println(concesionaria);
+                            System.out.println("");
+                            i++;
+                        }
+                        System.out.println("Ingrese opcion:");
+                        op = lea.nextInt() - 1;
+                    }while(op < 0 && op > list.size()-1);
+                    
+                    list.get(op).getVehiculos().add(bus);
                     break;
                 case 3:
+                    Camion camion = crearCamion(new Camion(), 1);
+                    camion.setLlantas(llantas);
+                    camion.setMarca(marca);
+                    camion.setModelo(modelo);
+                    camion.setYear(year);
+                    camion.setPrecio(precio);
+                    camion.setColor(color);
+                    
+                    op = 0;
+                    do{
+                        System.out.println("A que concesionaria desea agregarlo:");
+                        int i = 1;
+                        for (Concesionaria concesionaria : list) {
+                            System.out.println("Consecionaria " + i);
+                            System.out.println(concesionaria);
+                            System.out.println("");
+                            i++;
+                        }
+                        System.out.println("Ingrese opcion:");
+                        op = lea.nextInt() - 1;
+                    }while(op < 0 && op > list.size()-1);
+                    
+                    list.get(op).getVehiculos().add(camion);
                     break;
                     
             }
+        }else{
+            
         }
 
         
@@ -548,7 +593,99 @@ public class Lab3P2_DarielSevilla {
 
     }
     
-   
+     public static Camion crearCamion(Camion c, int op) {
+       
+        String test;
+       
+        
+        /**
+         * Atributo(s) int
+         */
+        int volumen = -1;
+        do {
+            if(op == 2){
+                System.out.println("volumen anterior: " + c.getVolumen());
+                System.out.println("Ingrese nuevo volumen(n para dejar igual):");
+                
+            }else{
+               System.out.println("Ingrese volumen:"); 
+            }
+            test = lea.next();
+            
+            if(op == 2 && test.equals("n") || test.equals("N")){
+                volumen = c.getVolumen();
+                break;
+            }   
+
+            int error = 0;
+            if (checkInt(test)) {
+                if(Integer.parseInt(test) > 0){
+                    volumen = Integer.parseInt(test);
+                }else{ 
+                    error++;
+                }
+            } else {
+                error++;
+            }
+            
+            if (error > 0){
+                System.out.println("Ingrese valor valido");
+            }
+        } while (volumen == -1);
+
+        int altura = -1;
+        do {
+            if(op == 2){
+                System.out.println("altura anterior: " + c.getAltura());
+                System.out.println("Ingrese nueva altura(n para dejar igual):");
+                
+            }else{
+               System.out.println("Ingrese altura:"); 
+            }
+            test = lea.next();
+            
+            if(op == 2 && test.equals("n") || test.equals("N")){
+                altura = c.getAltura();
+                break;
+            }   
+
+            int error = 0;
+            if (checkInt(test)) {
+                if(Integer.parseInt(test) > 0){
+                    altura = Integer.parseInt(test);
+                }else{ 
+                    error++;
+                }
+            } else {
+                error++;
+            }
+            
+            if (error > 0){
+                System.out.println("Ingrese valor valido");
+            }
+        } while (altura == -1);
+        
+        char bool = 'a';
+        boolean tru = false;
+        do{
+            System.out.println("tiene o no retroexcavadora? (s/n):");
+            bool = lea.next().toLowerCase().charAt(0);
+            
+            
+        }while(bool != 's' && bool != 'n');
+        
+        if(bool == 's'){
+            tru = true;
+        }else{
+            tru = false;
+        }
+        c.setAltura(altura);
+        c.setRetroexcavadora(tru);
+        c.setVolumen(volumen);
+        return c;
+        
+
+    }
     
     public static boolean checkInt(String par) {
         try {

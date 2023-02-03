@@ -50,7 +50,13 @@ public class Camion extends Vehiculo{
 
     @Override
     public String toString() {
-        return "Camion{" + "\nvolumen=" + volumen + "\naltura=" + altura + "\nretroexcavadora=" + retroexcavadora + '}';
+        String yesno = "";
+        if(retroexcavadora){
+            yesno = "si";
+        }else{
+            yesno = "no";
+        }
+        return "Camion{" + "\nvolumen=" + volumen + "\naltura=" + altura + "\nretroexcavadora=" + yesno + '}';
     }
     
     

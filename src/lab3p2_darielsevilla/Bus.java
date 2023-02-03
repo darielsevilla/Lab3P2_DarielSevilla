@@ -57,7 +57,7 @@ public class Bus extends Vehiculo{
         }else{
             tip = "De ruta";
         }
-        return super.toString() + "Bus{" + "\npasajeros=" + pasajeros + "\ntipo=" + tip + '}';
+        return super.toString() + "Bus{" + "\npasajeros=" + pasajeros + "\ntipo=" + tip + "}\n";
     }
     
     
