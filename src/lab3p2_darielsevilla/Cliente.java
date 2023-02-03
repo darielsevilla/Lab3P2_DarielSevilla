@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class Cliente {
     private int id;
     private String nombre;
-    private ArrayList<Vehiculo> vehiculos;
+    private ArrayList<Vehiculo> vehiculos = new ArrayList();
     private double saldo;
     
 
@@ -62,8 +62,10 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" + "\nid=" + id + "\nnombre=" + nombre + '}';
+        return "Cliente{" + "id=" + id + ", nombre=" + nombre + ", vehiculos=" + vehiculos + ", saldo=" + saldo + '}';
     }
+
+    
     
     
 }

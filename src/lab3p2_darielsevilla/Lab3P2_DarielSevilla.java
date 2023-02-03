@@ -29,7 +29,8 @@ public class Lab3P2_DarielSevilla {
             System.out.println("1-CRUD Concesionaria");
             System.out.println("2-CRUD Clientes");
             System.out.println("3-CRUD Vehiculos");
-            System.out.println("4- Salida");
+            System.out.println("4- compra y venta");
+            System.out.println("5- Salida");
             op = lea.nextInt();
 
             switch (op) {
@@ -182,7 +183,7 @@ public class Lab3P2_DarielSevilla {
                                     }
                                 } else {
                                     System.out.println("No hay vehiculos en esta concesionaria");
-                                    
+
                                 }
                                 break;
                             case 3:
@@ -199,26 +200,26 @@ public class Lab3P2_DarielSevilla {
                                     System.out.println("Ingrese opcion:");
                                     pos = lea.nextInt() - 1;
                                 } while (pos < 0 && pos > listaConcesionarias.size() - 1);
-                                
+
                                 listaConcesionarias.get(pos).getVehiculos();
                                 if (listaConcesionarias.get(pos).getVehiculos().size() != 0) {
-                                        int pos2 = -1;
-                                        do {
-                                            int i = 1;
-                                            for (Vehiculo z : listaConcesionarias.get(pos).getVehiculos()) {
-                                                System.out.println("Vehiculo " + i);
-                                                System.out.println(z);
-                                                System.out.println("");
-                                                System.out.println("");
-                                                i++;
-                                            }
-                                            System.out.println("Ingrese vehiculo a eliminar: ");
-                                            pos2 = lea.nextInt() - 1;
-                                        } while (pos2 < 0 || pos2 > (listaConcesionarias.get(pos).getVehiculos().size() - 1));
-                                        listaConcesionarias.get(pos).getVehiculos().remove(pos2);
-                                    } else {
-                                        System.out.println("No hay vehiculos");
-                                    }
+                                    int pos2 = -1;
+                                    do {
+                                        int i = 1;
+                                        for (Vehiculo z : listaConcesionarias.get(pos).getVehiculos()) {
+                                            System.out.println("Vehiculo " + i);
+                                            System.out.println(z);
+                                            System.out.println("");
+                                            System.out.println("");
+                                            i++;
+                                        }
+                                        System.out.println("Ingrese vehiculo a eliminar: ");
+                                        pos2 = lea.nextInt() - 1;
+                                    } while (pos2 < 0 || pos2 > (listaConcesionarias.get(pos).getVehiculos().size() - 1));
+                                    listaConcesionarias.get(pos).getVehiculos().remove(pos2);
+                                } else {
+                                    System.out.println("No hay vehiculos");
+                                }
                                 break;
 
                         }
@@ -229,61 +230,94 @@ public class Lab3P2_DarielSevilla {
                     break;
                 case 4:
                     int op4 = 0;
-                    
-                    do{
+
+                    do {
                         System.out.println("1-Comprar vehiculo");
                         System.out.println("2-Vender vehiculo");
                         op4 = lea.nextInt();
-                    }
-                    while(op4 != 1 && op4 != 2); 
-                    
-                    int c = -1;
-                    do{
-                        System.out.println("Clientes:");
-                        int i = 1;
-                        for (Cliente cliente : clientes) {
-                            System.out.println("Cliente " + i);
-                            i++;
-                            System.out.println(cliente);
-                        }
-                        System.out.println("Ingrese cliente:");
-                        c = lea.nextInt() - 1;
-                        
-                        c = lea.nextInt();
-                    }while(c < 0 || c > clientes.size() - 1);
-                    
-                    int b = -1;
-                    do{
-                        System.out.println("Concesionarias:");
-                        int i = 1;
-                        for (Concesionaria con : listaConcesionarias) {
-                            System.out.println("Concesionaria " + con);
-                            i++;
-                            System.out.println(con);
-                        }
-                        System.out.println("Ingrese concesionaria:");
-                        b = lea.nextInt() - 1;
-                        
-                        
-                    }while(c < 0 || c > listaConcesionarias.size() - 1);
-                    Cliente actual = clientes.get(c);
-                    Concesionaria esta = listaConcesionarias.get(b);
-                    
-                    switch(op4){
+                    } while (op4 != 1 && op4 != 2);
+                    switch (op4) {
                         case 1:
-                            if(esta.getVehiculos().size() == 0){
+                            int c = -1;
+                            int b = -1;
+                            do {
+                                System.out.println("Concesionarias:");
+                                int i = 1;
+                                for (Concesionaria con : listaConcesionarias) {
+                                    System.out.println("Concesionaria " + con);
+                                    i++;
+                                    System.out.println(con);
+                                }
+                                System.out.println("Ingrese concesionaria:");
+                                c = lea.nextInt() - 1;
+
+                            } while (c < 0 || c > listaConcesionarias.size() - 1);
+
+                            Concesionaria esta = listaConcesionarias.get(c);
+
+                            if (esta.getVehiculos().size() == 0) {
                                 System.out.println("Esta concesionaria no tiene vehiculos");
+                            } else {
+                                System.out.println("Vehiculos de esta concesionaria:");
+                                int cont = 1;
+                                for (Vehiculo v : esta.getVehiculos()) {
+                                    System.out.println("Vehiculo " + cont);
+                                    cont++;
+                                    System.out.println(v);
+                                    System.out.println("");
+                                }
+                                System.out.println("Que vehiculo desea comprar?");
+                                int compra = lea.nextInt() - 1;
+                                if (compra < 0 || compra > esta.getVehiculos().size() - 1) {
+                                    System.out.println("Este no es un valor valido");
+                                } else {
+                                    c = -1;
+                                    do {
+                                        System.out.println("Clientes:");
+                                        int i = 1;
+                                        for (Cliente cliente : clientes) {
+                                            System.out.println("Cliente " + i);
+                                            i++;
+                                            System.out.println(cliente);
+                                        }
+                                        System.out.println("Ingrese cliente:");
+                                        c = lea.nextInt();
+                                        c--;
+
+                                       
+                                    } while (c < 0 || c > clientes.size() - 1);
+                                    Cliente actual = clientes.get(c);
+                                    double pFinal = esta.getVehiculos().get(compra).getPrecio() + (esta.getVehiculos().get(compra).getPrecio() * 0.075);
+                                    System.out.println("precio inicial:" + esta.getVehiculos().get(compra).getPrecio());
+                                    System.out.println("precio final:" + pFinal);
+                                    System.out.println("Desea comprar? (s para comprar):");
+                                    String x = lea.next();
+                                    
+                                    //verificacion
+                                    if(x.equals("s") || x.equals("S")){
+                                        if(actual.getSaldo() >= pFinal){
+                                            actual.setSaldo(actual.getSaldo() - pFinal);
+                                            actual.getVehiculos().add(esta.getVehiculos().get(compra));
+                                            esta.setSaldo(esta.getSaldo()+ pFinal);
+                                            esta.getVehiculos().remove(compra);
+                                        }else{
+                                            System.out.println("No tiene dinero para esta compra");
+                                        }
+                                    }
+                                }
+
                             }
+
+                            Cliente actual = clientes.get(c);
+
                             break;
-                        case 2: 
-                            if(actual.getVehiculos().size() == 0){
-                                System.out.println("Esta persona no tiene vehiculos");
-                            }
+                        case 2:
+
                             break;
                     }
                     break;
             }
-        } while (op != 4);
+        } while (op != 5);
 
     }
 
@@ -549,7 +583,7 @@ public class Lab3P2_DarielSevilla {
             } while (op3 < 1 || op3 > 3);
 
             switch (op3) {
-                case 1: 
+                case 1:
                     Carro carro = crearCarro(new Carro(), 1);
                     carro.setLlantas(llantas);
                     carro.setMarca(marca);
@@ -573,7 +607,7 @@ public class Lab3P2_DarielSevilla {
 
                     list.get(op).getVehiculos().add(carro);
                     break;
-                
+
                 case 2:
                     System.out.println("Ingrese capacidad de pasajeros: ");
                     int capacidad = lea.nextInt();
