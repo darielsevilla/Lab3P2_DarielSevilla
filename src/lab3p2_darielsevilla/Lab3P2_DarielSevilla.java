@@ -19,6 +19,7 @@ public class Lab3P2_DarielSevilla {
         //id. nombre, y arraylists no se modifican ni n
         //carros - todo menos la super clase
         ArrayList<Concesionaria> listaConcesionarias = new ArrayList();
+        ArrayList<Cliente> clientes = new ArrayList();
 
         int op = 0;
         do {
@@ -75,6 +76,37 @@ public class Lab3P2_DarielSevilla {
                     }
                     break;
                 case 2:
+                    System.out.println("Que opcion desea:");
+                    System.out.println("1- Agregar cliente");
+                    System.out.println("2- Eliminar cliente");
+                    System.out.println("Ingrese opcion:");
+                    opcion = lea.nextInt();
+                    
+                    switch(opcion){
+                        case 1:
+                            Cliente cliente = new Cliente();
+                            cliente = crearCliente(clientes, cliente);
+                            clientes.add(cliente);
+                            break;
+                        case 2:
+                            int op2 = -1;
+                            do {
+                                System.out.println("Que cliente desea eliminar:");
+                                int list = 1;
+                                for (Cliente con : clientes) {
+                                    System.out.println("Cliente " + list);
+                                    list++;
+                                    System.out.println(con);
+                                    System.out.println("");
+                                }
+                                System.out.println("Ingrese opcion:");
+                                op2 = lea.nextInt() - 1;
+                            } while (op2 < 0 && op2 > clientes.size() - 1);
+
+                            clientes.remove(op2);
+                            break;
+                    }
+                    
                     break;
                 case 3:
                     break;
@@ -95,7 +127,8 @@ public class Lab3P2_DarielSevilla {
 
         } else {
             System.out.println("Ingrese nombre:");
-            nombre = lea.next();
+            lea.nextLine();
+            nombre = lea.nextLine();
         }
         //lea.next();
         //lea.nextLine();
@@ -206,7 +239,8 @@ public class Lab3P2_DarielSevilla {
         String nombre;
 
         System.out.println("Ingrese nombre:");
-        nombre = lea.next();
+        lea.nextLine();
+        nombre = lea.nextLine();
 
         //lea.next();
         //lea.nextLine();
