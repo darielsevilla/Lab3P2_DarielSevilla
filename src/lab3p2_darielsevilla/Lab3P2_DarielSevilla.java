@@ -19,7 +19,7 @@ public class Lab3P2_DarielSevilla {
         //id. nombre, y arraylists no se modifican ni n
         //carros - todo menos la super clase
         ArrayList<Concesionaria> listaConcesionarias = new ArrayList();
-        
+
         int op = 0;
         do {
             System.out.println("Ingrese opcion:");
@@ -28,21 +28,21 @@ public class Lab3P2_DarielSevilla {
             System.out.println("3-CRUD Vehiculos");
             System.out.println("4- Salida");
             op = lea.nextInt();
-            
-            switch(op){
+
+            switch (op) {
                 case 1:
                     System.out.println("1-crear consecionaria");
                     System.out.println("2-Modificar");
                     System.out.println("3-Eliminar consecionaria");
                     int opcion = lea.nextInt();
-                    switch(opcion){
+                    switch (opcion) {
                         case 1:
                             Concesionaria nueva = crearConcesionaria(listaConcesionarias, new Concesionaria(), 1);
                             listaConcesionarias.add(nueva);
                             break;
                         case 2:
                             int op2 = -1;
-                            do{
+                            do {
                                 System.out.println("Que concesionaria desea modificar:");
                                 int list = 1;
                                 for (Concesionaria con : listaConcesionarias) {
@@ -53,11 +53,11 @@ public class Lab3P2_DarielSevilla {
                                 }
                                 System.out.println("Ingrese opcion:");
                                 op2 = lea.nextInt() - 1;
-                            }while(op2 < 0 && op2 > listaConcesionarias.size() - 1);
+                            } while (op2 < 0 && op2 > listaConcesionarias.size() - 1);
                             crearConcesionaria(listaConcesionarias, listaConcesionarias.get(op2), 2);
                             break;
                         case 3:
-                            do{
+                            do {
                                 System.out.println("Que concesionaria desea eliminar:");
                                 int list = 1;
                                 for (Concesionaria con : listaConcesionarias) {
@@ -68,8 +68,8 @@ public class Lab3P2_DarielSevilla {
                                 }
                                 System.out.println("Ingrese opcion:");
                                 op2 = lea.nextInt() - 1;
-                            }while(op2 < 0 && op2 > listaConcesionarias.size() - 1);
-                            
+                            } while (op2 < 0 && op2 > listaConcesionarias.size() - 1);
+
                             listaConcesionarias.remove(op2);
                             break;
                     }
@@ -89,19 +89,16 @@ public class Lab3P2_DarielSevilla {
         /**
          * Ingresar nombre
          */
+        String nombre;
         if (op == 2) {
-            System.out.println("Nombre anterior: " + c.getNombre());
-            System.out.println("Ingrese nuevo nombre(n para dejar igual):");
+            nombre = c.getNombre();
+
         } else {
             System.out.println("Ingrese nombre:");
+            nombre = lea.next();
         }
         //lea.next();
         //lea.nextLine();
-
-        String nombre = lea.next();
-        if (op == 2 && nombre.equals("n") || nombre.equals("N")) {
-            nombre = c.getNombre();
-        }
 
         /**
          * Atributo id
@@ -109,18 +106,15 @@ public class Lab3P2_DarielSevilla {
         int id = -1;
         do {
             if (op == 2) {
-                System.out.println("id anterior: " + c.getId());
-                System.out.println("Ingrese nuevo id(n para dejar igual):");
+                id = c.getId();
+                break;
 
             } else {
                 System.out.println("Ingrese id:");
             }
             test = lea.next();
 
-            if (op == 2 && test.equals("n") || test.equals("N")) {
-                id = c.getId();
-                break;
-            }
+            
 
             int error = 0;
             if (checkInt(test)) {
@@ -149,16 +143,16 @@ public class Lab3P2_DarielSevilla {
         //Ingrese direccion:
         if (op == 2) {
             System.out.println("Direccion anterior: " + c.getDireccion());
-            System.out.println("Ingrese nuevo direccion(n para dejar igual):");
+            System.out.println("Ingrese nueva direccion(n para dejar igual):");
         } else {
             System.out.println("Ingrese direccion:");
         }
         //lea.next();
         //lea.nextLine();
-        
+
         String direccion = lea.next();
-        if(op == 2 && (direccion.equals("N") || direccion.equals("n"))){
-            
+        if (op == 2 && (direccion.equals("N") || direccion.equals("n"))) {
+
         }
         /**
          * salida
@@ -197,6 +191,100 @@ public class Lab3P2_DarielSevilla {
          */
         c.setNombre(nombre);
         c.setDireccion(direccion);
+        c.setId(id);
+        c.setSaldo(saldo);
+        return c;
+
+    }
+
+    public static Cliente crearCliente(ArrayList<Cliente> lista, Cliente c) {
+
+        String test;
+        /**
+         * Ingresar nombre
+         */
+        String nombre;
+
+        System.out.println("Ingrese nombre:");
+        nombre = lea.next();
+
+        //lea.next();
+        //lea.nextLine();
+        /**
+         * Atributo id
+         */
+        int id = -1;
+        do {
+            
+            System.out.println("Ingrese id: ");  
+            test = lea.next();
+
+            
+
+            int error = 0;
+            if (checkInt(test)) {
+                if (Integer.parseInt(test) > 0) {
+                    int a = Integer.parseInt(test);
+                    for (Cliente con : lista) {
+                        if (con.getId() == a && !con.equals(c)) {
+                            error++;
+                        }
+                    }
+
+                } else {
+                    error++;
+                }
+            } else {
+                error++;
+            }
+
+            if (error > 0) {
+                System.out.println("El valor es repetido / no es valido");
+            } else {
+                id = Integer.parseInt(test);
+            }
+        } while (id == -1);
+
+        //Ingrese direccion:
+        
+        
+        //lea.next();
+        //lea.nextLine();
+        
+        
+        /**
+         * salida
+         */
+        double saldo = -1;
+        do {
+            
+            System.out.println("Ingrese saldo:");
+            test = lea.next();
+
+            int error = 0;
+            if (checkDouble(test)) {
+                if (Double.parseDouble(test) > 0) {
+
+                    saldo = Double.parseDouble(test);
+                } else {
+                    error++;
+                }
+            } else {
+                error++;
+            }
+
+            if (error > 0) {
+                System.out.println("Ingrese valor valido");
+            } else {
+
+            }
+        } while (saldo == -1);
+
+        /**
+         * salida
+         */
+        c.setNombre(nombre);
+        
         c.setId(id);
         c.setSaldo(saldo);
         return c;
