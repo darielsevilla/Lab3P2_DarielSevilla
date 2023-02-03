@@ -12,20 +12,16 @@ import java.awt.Color;
  */
 public class Bus extends Vehiculo{
     private int pasajeros;
-    private String tipo;
+    private boolean tipo;
     private int capacidad;
 
     public Bus() {
         super();
     }
 
-    public Bus(int pasajeros, String tipo, int capacidad) {
-        this.pasajeros = pasajeros;
-        this.tipo = tipo;
-        this.capacidad = capacidad;
-    }
+   
 
-    public Bus(int pasajeros, String tipo, int capacidad, Color color, String marca, String modelo, int year, double precio) {
+    public Bus(int pasajeros, boolean tipo, int capacidad, String color, String marca, String modelo, int year, double precio) {
         super(color, marca, modelo, year, precio, 4);
         this.pasajeros = pasajeros;
         this.tipo = tipo;
@@ -40,11 +36,11 @@ public class Bus extends Vehiculo{
         this.pasajeros = pasajeros;
     }
 
-    public String getTipo() {
+    public boolean getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(boolean tipo) {
         this.tipo = tipo;
     }
 
@@ -53,12 +49,20 @@ public class Bus extends Vehiculo{
     }
 
     public void setCapacidad(int capacidad) {
-        this.capacidad = capacidad;
+        if(capacidad <= 50 && capacidad > 0){
+            this.capacidad = capacidad;
+        }
     }
 
     @Override
     public String toString() {
-        return super.toString() + "Bus{" + "\npasajeros=" + pasajeros + "\ntipo=" + tipo + "\ncapacidad=" + capacidad + '}';
+        String tip;
+        if(tipo){
+            tip = "Rapidito";
+        }else{
+            tip = "De ruta";
+        }
+        return super.toString() + "Bus{" + "\npasajeros=" + pasajeros + "\ntipo=" + tip + "\ncapacidad=" + capacidad + '}';
     }
     
     

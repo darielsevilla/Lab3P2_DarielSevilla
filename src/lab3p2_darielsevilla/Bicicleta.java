@@ -12,14 +12,14 @@ import java.awt.Color;
  */
 public class Bicicleta extends Vehiculo{
     private String descripcion;
-    private double radio;
+    private int radio;
     private boolean bmx;
 
     public Bicicleta() {
         super();
     }
 
-    public Bicicleta(String descripcion, double radio, boolean bmx, Color color, String marca, String modelo, int year, double precio) {
+    public Bicicleta(String descripcion, int radio, boolean bmx, String color, String marca, String modelo, int year, double precio) {
         super(color, marca, modelo, year, precio, 2);
         this.descripcion = descripcion;
         this.radio = radio;
@@ -34,11 +34,11 @@ public class Bicicleta extends Vehiculo{
         this.descripcion = descripcion;
     }
 
-    public double getRadio() {
+    public int getRadio() {
         return radio;
     }
 
-    public void setRadio(double radio) {
+    public void setRadio(int radio) {
         this.radio = radio;
     }
 

@@ -16,19 +16,17 @@ public class Concesionaria {
     private String nombre;
     private int id;
     private String direccion;
-    private ArrayList<Vehiculo> vehiculos;
-    private ArrayList<Cliente> clientes;
+    private ArrayList<Vehiculo> vehiculos = new ArrayList();
+    private ArrayList<Cliente> clientes = new ArrayList();
     private double saldo;
 
     public Concesionaria() {
     }
     
-    public Concesionaria(String nombre, int id, String direccion, ArrayList<Vehiculo> vehiculos, ArrayList<Cliente> clientes, double saldo) {
+    public Concesionaria(String nombre, int id, String direccion,  double saldo) {
         this.nombre = nombre;
         this.id = id;
         this.direccion = direccion;
-        this.vehiculos = vehiculos;
-        this.clientes = clientes;
         this.saldo = saldo;
     }
 

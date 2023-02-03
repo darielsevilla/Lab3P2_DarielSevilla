@@ -19,13 +19,9 @@ public class Carro extends Vehiculo{
        super(); 
     }
 
-    public Carro(int puertas, String motor, double velocidad) {
-        this.puertas = puertas;
-        this.motor = motor;
-        this.velocidad = velocidad;
-    }
+   
 
-    public Carro(int puertas, String motor, double velocidad, Color color, String marca, String modelo, int year, double precio) {
+    public Carro(int puertas, String motor, double velocidad, String color, String marca, String modelo, int year, double precio) {
         super(color, marca, modelo, year, precio, 4);
         this.puertas = puertas;
         this.motor = motor;
