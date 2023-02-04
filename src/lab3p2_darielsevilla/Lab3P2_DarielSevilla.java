@@ -284,7 +284,6 @@ public class Lab3P2_DarielSevilla {
                                         c = lea.nextInt();
                                         c--;
 
-                                       
                                     } while (c < 0 || c > clientes.size() - 1);
                                     Cliente actual = clientes.get(c);
                                     double pFinal = esta.getVehiculos().get(compra).getPrecio() + (esta.getVehiculos().get(compra).getPrecio() * 0.075);
@@ -292,15 +291,15 @@ public class Lab3P2_DarielSevilla {
                                     System.out.println("precio final:" + pFinal);
                                     System.out.println("Desea comprar? (s para comprar):");
                                     String x = lea.next();
-                                    
+
                                     //verificacion
-                                    if(x.equals("s") || x.equals("S")){
-                                        if(actual.getSaldo() >= pFinal){
+                                    if (x.equals("s") || x.equals("S")) {
+                                        if (actual.getSaldo() >= pFinal) {
                                             actual.setSaldo(actual.getSaldo() - pFinal);
                                             actual.getVehiculos().add(esta.getVehiculos().get(compra));
-                                            esta.setSaldo(esta.getSaldo()+ pFinal);
+                                            esta.setSaldo(esta.getSaldo() + pFinal);
                                             esta.getVehiculos().remove(compra);
-                                        }else{
+                                        } else {
                                             System.out.println("No tiene dinero para esta compra");
                                         }
                                     }
@@ -312,7 +311,72 @@ public class Lab3P2_DarielSevilla {
 
                             break;
                         case 2:
+                            if (clientes.size() == 0) {
+                                System.out.println("No hay clientes");
+                                break;
+                            }
+                            c = -1;
+                            do {
+                                System.out.println("Clientes:");
+                                int i = 1;
+                                for (Cliente cliente : clientes) {
+                                    System.out.println("Cliente " + i);
+                                    i++;
+                                    System.out.println(cliente);
+                                }
+                                System.out.println("Ingrese cliente:");
+                                c = lea.nextInt();
+                                c--;
 
+                            } while (c < 0 || c > clientes.size() - 1);
+                            actual = clientes.get(c);
+
+                            if (actual.getVehiculos().size() == 0) {
+                                System.out.println("El cliente no tiene vehiculos");
+                                break;
+                            }
+
+                            System.out.println("Vehiculos de este cliente:");
+                            int cont = 1;
+                            for (Vehiculo v : actual.getVehiculos()) {
+                                System.out.println("Vehiculo " + cont);
+                                cont++;
+                                System.out.println(v);
+                                System.out.println("");
+                            }
+                            System.out.println("Que vehiculo desea vender?");
+                            int compra = lea.nextInt() - 1;
+
+                            if (compra < 0 || compra > actual.getVehiculos().size() - 1) {
+                                System.out.println("Este no es un valor valido");
+                                break;
+                            }
+                            
+                            int d = -1;
+                            do {
+                                System.out.println("Concesionarias:");
+                                int i = 1;
+                                for (Concesionaria con : listaConcesionarias) {
+                                    System.out.println("Concesionaria " + con);
+                                    i++;
+                                    System.out.println(con);
+                                }
+                                System.out.println("Ingrese concesionaria en la que lo vendera:");
+                                d = lea.nextInt() - 1;
+
+                            } while (d < 0 || d > listaConcesionarias.size() - 1);
+
+                            esta = listaConcesionarias.get(d);
+                            
+                            if(esta.getSaldo() >= actual.getVehiculos().get(compra).getPrecio()){
+                                esta.setSaldo(esta.getSaldo() - actual.getVehiculos().get(compra).getPrecio());
+                                esta.getVehiculos().add(actual.getVehiculos().get(compra));
+                                actual.setSaldo(actual.getSaldo() + actual.getVehiculos().get(compra).getPrecio());
+                                actual.getVehiculos().remove(actual.getVehiculos().get(compra));
+                                
+                            }else{
+                                System.out.println("La concesionaria no tiene saldo para realizar esta compra");
+                            }
                             break;
                     }
                     break;
