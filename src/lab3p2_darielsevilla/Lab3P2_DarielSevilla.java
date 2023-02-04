@@ -124,6 +124,7 @@ public class Lab3P2_DarielSevilla {
                                 crearVehiculo(listaConcesionarias);
                                 break;
                             case 2:
+                                
                                 int pos = -1;
                                 do {
                                     System.out.println("De que consecionaria es el vehiculo a modificar:");
@@ -229,6 +230,7 @@ public class Lab3P2_DarielSevilla {
                     }
                     break;
                 case 4:
+                    if(listaConcesionarias.size() != 0 && clientes.size() != 0){
                     int op4 = 0;
 
                     do {
@@ -378,6 +380,9 @@ public class Lab3P2_DarielSevilla {
                                 System.out.println("La concesionaria no tiene saldo para realizar esta compra");
                             }
                             break;
+                        }
+                    }else{
+                        System.out.println("No hay concesionarias y/o clientes");
                     }
                     break;
             }
